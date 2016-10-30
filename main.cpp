@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Snake.hpp"
 
 int main()
 {

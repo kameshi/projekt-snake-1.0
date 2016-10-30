@@ -13,7 +13,7 @@ Game::Game()
 , mIsMovingLeft(false)
 {
     if(!mTexture.loadFromFile("img/snake.png")) {
-        //jezeli nie wczyta to obsluga bledu... tylko jaka????
+        // Chyba coœ takiego ale konstruktorn nie mo¿e zwracaæ wartoœci return EXIT_FAILURE;
     }
     mPlayer.setTexture(mTexture);
     mPlayer.setPosition(100.f, 100.f);
