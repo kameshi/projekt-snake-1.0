@@ -17,7 +17,10 @@ class Snake
         void render(sf::RenderWindow &window);
         bool update();
         void handlePlayerInput();
-
+        //metody dot. jedzenia
+        bool FoodColision(sf::RectangleShape food);
+        bool isFoodOnBody(sf::FloatRect fR);
+        //wielkosci jednego snake-node
         static const int Height = 20;
         static const int Width = 20;
 
@@ -28,7 +31,9 @@ class Snake
         std::vector<sf::Sprite> nodes;
         Directions direction;
 
-        void moves();
+        void moves(); //metoda przemiszczajaca weza
+        void grow(); //metoda umozliwiajaca wzrost weza
+        bool ownCollision() const; //czy wonsz zjada sam siebie
 
 };
 

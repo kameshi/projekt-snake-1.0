@@ -50,6 +50,8 @@ void Snake::handlePlayerInput()
 }
 bool Snake::update()
 {
+    if(ownCollision())
+        return false;
     moves();
     return true;
 }
@@ -59,4 +61,43 @@ void Snake::render(sf::RenderWindow &window)
     {
         window.draw(node);
     }
+}
+void Snake::grow()
+{
+    nodes.push_back(mPlayer);
+}
+bool Snake::FoodColision(sf::RectangleShape food)
+{
+    sf::Sprite head = nodes[0];
+    sf::FloatRect headPosition = head.getGlobalBounds();
+    sf::FloatRect foodPosition = food.getGlobalBounds();
+    if(headPosition.intersects(foodPosition))
+    {
+        grow();
+        return true;
+    }
+    return false;
+}
+bool Snake::isFoodOnBody(sf::FloatRect fR)
+{
+    for(auto &node : nodes)
+    {
+        sf::FloatRect tmp = node.getGlobalBounds();
+        if(tmp == fR)
+            return true;
+    }
+    return false;
+}
+bool Snake::ownCollision() const
+{
+    sf::Sprite head = nodes[0];
+    sf::FloatRect headPosition = head.getGlobalBounds();
+    sf::FloatRect tmp;
+    for(int i = nodes.size()-1; i > 0; --i)
+    {
+        tmp = nodes[i].getGlobalBounds();
+        if(headPosition.intersects(tmp))
+            return true;
+    }
+    return false;
 }

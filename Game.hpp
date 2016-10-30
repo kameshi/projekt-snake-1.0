@@ -10,8 +10,12 @@ class Game
 public:
     Game();
     void run();
+
+    //szerokosc i wysokosc okna
+    static const int width = 800;
+    static const int height = 600;
 private:
-    void update();                                // aktualizuje gre
+    bool update();                                // aktualizuje gre
     void render();                                                  //Tworzy obraz w oknie i wyswietla go
     void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
 private:
@@ -19,6 +23,8 @@ private:
     static const sf::Time TimePerFrame;
 
     sf::RenderWindow mWindow;
+    //jedzonko
+    sf::RectangleShape food;
 
     //dodajemy Snake'a
     Snake snake;
