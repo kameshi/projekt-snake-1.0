@@ -50,7 +50,7 @@ void Snake::handlePlayerInput()
 }
 bool Snake::update()
 {
-    if(ownCollision())
+    if(ownCollision() || wallCollision())
         return false;
     moves();
     return true;
@@ -99,5 +99,13 @@ bool Snake::ownCollision() const
         if(headPosition.intersects(tmp))
             return true;
     }
+    return false;
+}
+bool Snake::wallCollision()
+{
+    sf::Sprite head = nodes[0];
+    sf::Vector2f headPosition = head.getPosition();
+    if(headPosition.x == 0 || headPosition.x == Game::width || headPosition.y == 0 || headPosition.y == Game::height)
+        return true;
     return false;
 }

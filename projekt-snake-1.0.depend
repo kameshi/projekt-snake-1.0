@@ -823,12 +823,12 @@
 	<SFML/Graphics.hpp>
 	"Snake.hpp"
 
-1477841381 d:\code\projekt-snake-1.0\snake.hpp
+1477842778 d:\code\projekt-snake-1.0\snake.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
 
-1477841860 source:d:\code\projekt-snake-1.0\snake_methods.cpp
+1477844325 source:d:\code\projekt-snake-1.0\snake_methods.cpp
 	"Snake.hpp"
 	"Game.hpp"
 

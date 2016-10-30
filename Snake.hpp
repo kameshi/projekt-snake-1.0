@@ -34,6 +34,7 @@ class Snake
         void moves(); //metoda przemiszczajaca weza
         void grow(); //metoda umozliwiajaca wzrost weza
         bool ownCollision() const; //czy wonsz zjada sam siebie
+        bool wallCollision(); //czy uderzyl w sciane
 
 };
 
