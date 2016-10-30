@@ -3,6 +3,7 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Snake.hpp"
 
 class Game
 {
@@ -10,22 +11,17 @@ public:
     Game();
     void run();
 private:
-    void processEvents();
-    void update(sf::Time deltaTime);
-    void render();
-    void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+    void update();                                // aktualizuje gre
+    void render();                                                  //Tworzy obraz w oknie i wyswietla go
+    void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
 private:
-    static const float PlayerSpeed;
+
     static const sf::Time TimePerFrame;
 
     sf::RenderWindow mWindow;
-    sf::Texture mTexture;
-    sf::Sprite mPlayer;
 
-    bool mIsMovingUp;
-    bool mIsMovingDown;
-    bool mIsMovingRight;
-    bool mIsMovingLeft;
+    //dodajemy Snake'a
+    Snake snake;
 
 };
 

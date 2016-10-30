@@ -14,8 +14,7 @@ class Snake
 {
     public:
         Snake();
-        virtual ~Snake(){};
-        void render();
+        void render(sf::RenderWindow &window);
         bool update();
         void handlePlayerInput();
 
