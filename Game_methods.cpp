@@ -2,13 +2,12 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
-const sf::Time Game::TimePerFrame = sf::seconds(1.f/10.f);
+const float Game::playerSpeed = 1.f/10.f;
+const sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
 
-Game::Game()
-: mWindow(sf::VideoMode(width, height), "Snake v.1.0")
+Game::Game(sf::RenderWindow *gWindow)
 {
-    mWindow.setFramerateLimit(60);
-
+    mWindow = gWindow;
     //ustawiamy parametry jedzonka
     food.setSize(sf::Vector2f(20, 20));
     food.setPosition(400, 400);
@@ -23,7 +22,7 @@ Game::Game()
 int Game::run() {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-    while(mWindow.isOpen())
+    while(mWindow->isOpen())
     {
         timeSinceLastUpdate += clock.restart();
         handlePlayerInput();
@@ -42,10 +41,10 @@ int Game::run() {
 void Game::handlePlayerInput()
 {
     sf::Event event;
-    while(mWindow.pollEvent(event))
+    while(mWindow->pollEvent(event))
     {
         if(event.type == sf::Event::Closed)
-            mWindow.close();
+            mWindow->close();
     }
     snake.handlePlayerInput();
 }
@@ -76,10 +75,10 @@ bool Game::update() {
     return (snake.update()) ? true : false;
 }
 void Game::render() {
-    mWindow.clear(sf::Color(237,246,125));
+    mWindow->clear(sf::Color(237,246,125));
     point.setString(pointss);
-    mWindow.draw(food);
-    mWindow.draw(point);
+    mWindow->draw(food);
+    mWindow->draw(point);
     snake.render(mWindow);
-    mWindow.display();
+    mWindow->display();
 }

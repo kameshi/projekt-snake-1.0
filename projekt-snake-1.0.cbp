@@ -57,8 +57,6 @@
 		<Unit filename="Menu_methods.cpp" />
 		<Unit filename="Snake.hpp" />
 		<Unit filename="Snake_methods.cpp" />
-		<Unit filename="functions.cpp" />
-		<Unit filename="headers.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

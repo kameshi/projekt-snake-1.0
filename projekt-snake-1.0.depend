@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1477832699 source:d:\code\projekt-snake-1.0\main.cpp
+1477906421 source:d:\code\projekt-snake-1.0\main.cpp
 	"Game.hpp"
 	"Snake.hpp"
+	"Menu.hpp"
 
 1470642834 d:\code\projekt-snake-1.0\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -822,20 +823,25 @@
 	<SFML/Graphics.hpp>
 	<vector>
 
-1477841910 source:d:\code\projekt-snake-1.0\game_methods.cpp
+1477939791 source:d:\code\projekt-snake-1.0\game_methods.cpp
+	"Menu.hpp"
+	"Snake.hpp"
 	"Game.hpp"
 
-1477841083 d:\code\projekt-snake-1.0\game.hpp
+1477939735 d:\code\projekt-snake-1.0\game.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
+	<string>
+	<sstream>
 	"Snake.hpp"
 
-1477842778 d:\code\projekt-snake-1.0\snake.hpp
+1477939833 d:\code\projekt-snake-1.0\snake.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
 
-1477844325 source:d:\code\projekt-snake-1.0\snake_methods.cpp
+1477939857 source:d:\code\projekt-snake-1.0\snake_methods.cpp
+	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
@@ -847,4 +853,13 @@
 1477878286 c:\users\kameshi\desktop\projekt-snake-1.0\menu.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
+
+1477906421 d:\code\projekt-snake-1.0\menu.hpp
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+
+1477939723 source:d:\code\projekt-snake-1.0\menu_methods.cpp
+	"Menu.hpp"
+	"Snake.hpp"
+	"Game.hpp"
 

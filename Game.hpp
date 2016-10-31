@@ -12,7 +12,7 @@ class Game
 {
     public:
 
-        Game();
+        Game(sf::RenderWindow *gWindow);
         int run();
 
         //szerokosc i wysokosc okna
@@ -26,12 +26,12 @@ class Game
         void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
 
     private:
-
+        static const float playerSpeed;
         static const sf::Time TimePerFrame;
 
         sf::Font font;
 
-        sf::RenderWindow mWindow;
+        sf::RenderWindow * mWindow;
         //jedzonko
         sf::RectangleShape food;
 

@@ -5,6 +5,8 @@
 Menu::Menu()
 : mWindow(sf::VideoMode(Game::width, Game::height), "Snake v.1.0")
 {
+    mWindow.setFramerateLimit(60);
+
     heightButtonPosition = Game::height / 4;
     widthButtonPosition = Game::width / 2 - 50;
 }
@@ -65,7 +67,7 @@ void Menu::detectPressButton()
         coordinates = sf::Mouse::getPosition( mWindow );
         if(coordinates.x > widthButtonPosition && coordinates.x < widthButtonPosition + 100 && coordinates.y > heightButtonPosition && coordinates.y < heightButtonPosition + 50)
         {
-            Game game;
+            Game game(&mWindow);
             points = game.run();
             //takeNick();
         }

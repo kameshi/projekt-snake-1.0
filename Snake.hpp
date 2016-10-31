@@ -14,7 +14,7 @@ class Snake
 {
     public:
         Snake();
-        void render(sf::RenderWindow &window);
+        void render(sf::RenderWindow *window);
         bool update();
         void handlePlayerInput();
         //metody dot. jedzenia

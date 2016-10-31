@@ -56,11 +56,11 @@ bool Snake::update()
     moves();
     return true;
 }
-void Snake::render(sf::RenderWindow &window)
+void Snake::render(sf::RenderWindow *window)
 {
     for(auto node : nodes)
     {
-        window.draw(node);
+        window->draw(node);
     }
 }
 void Snake::grow()
