@@ -3,12 +3,8 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
-
-enum class Buttons
-{
-    PLAY, SETTINGS, SCORE, CLOSE
-};
+#include <fstream>
+#include <string>
 
 class Menu
 {
@@ -16,21 +12,30 @@ class Menu
 
         void settings();
         void score();
-        void loadTexture();
+        void loadText();
         void detectPressButton();
+        void checkScore();
+        void readingFile();
 
     private:
-
-        Buttons button;
 
         int heightButtonPosition;
         int widthButtonPosition;
 
         sf::RenderWindow mWindow;
-        sf::Sprite buttonsp[4]; //tablica przycisków
-        sf::Texture buttontx[4];
+        //sf::Sprite buttonsp[4]; //tablica przycisków
+        //sf::Texture buttontx[4];
+        sf::Font font;
+        sf::Text button[4];
 
         int points;
+
+        std::fstream file;
+
+        int i;
+        int scorei[11];
+        std::string nick[11];
+        std::string scores[11];
 
     public:
 

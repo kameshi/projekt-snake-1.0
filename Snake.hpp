@@ -24,6 +24,8 @@ class Snake
         static const int Height = 20;
         static const int Width = 20;
 
+        void moves(); //metoda przemiszczajaca weza
+
     private:
 
         sf::Texture mTexture;
@@ -31,7 +33,7 @@ class Snake
         std::vector<sf::Sprite> nodes;
         Directions direction;
 
-        void moves(); //metoda przemiszczajaca weza
+
         void grow(); //metoda umozliwiajaca wzrost weza
         bool ownCollision() const; //czy wonsz zjada sam siebie
         bool wallCollision(); //czy uderzyl w sciane
