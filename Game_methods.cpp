@@ -1,5 +1,6 @@
+#include "Menu.hpp"
+#include "Snake.hpp"
 #include "Game.hpp"
-
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/10.f);
 
@@ -12,8 +13,14 @@ Game::Game()
     food.setSize(sf::Vector2f(20, 20));
     food.setPosition(400, 400);
     food.setFillColor(sf::Color::Red);
+
+    font.loadFromFile("./fonts/moj1.ttf");
+
+    point.setPosition(width-100,height-50);
+    point.setFont(font);
+
 }
-void Game::run() {
+int Game::run() {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mWindow.isOpen())
@@ -24,7 +31,9 @@ void Game::run() {
         {
             timeSinceLastUpdate -= TimePerFrame;
             if(!update())
-                mWindow.close();
+            {
+                return points;
+            }
         }
         render();
     }
@@ -43,6 +52,11 @@ void Game::handlePlayerInput()
 bool Game::update() {
     if(snake.FoodColision(food)) //jezeli wonsz zjadl jedzonko to if bedzie true
     {
+        points++;
+        pointsos.str( "" );
+        pointsos << points;
+        pointss = "";
+        pointss = pointsos.str();
         sf::Vector2f movement; //przmieszczenie
         sf::RectangleShape tmp(sf::Vector2f(Snake::Width, Snake::Height));
         std::default_random_engine engine; //inicjowanie generatora liczb pseudolosowych
@@ -63,7 +77,9 @@ bool Game::update() {
 }
 void Game::render() {
     mWindow.clear(sf::Color(237,246,125));
+    point.setString(pointss);
     mWindow.draw(food);
+    mWindow.draw(point);
     snake.render(mWindow);
     mWindow.display();
 }

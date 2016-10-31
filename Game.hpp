@@ -3,31 +3,45 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <sstream>
+
 #include "Snake.hpp"
 
 class Game
 {
-public:
-    Game();
-    void run();
+    public:
 
-    //szerokosc i wysokosc okna
-    static const int width = 800;
-    static const int height = 600;
-private:
-    bool update();                                // aktualizuje gre
-    void render();                                                  //Tworzy obraz w oknie i wyswietla go
-    void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
-private:
+        Game();
+        int run();
 
-    static const sf::Time TimePerFrame;
+        //szerokosc i wysokosc okna
+        static const int width = 800;
+        static const int height = 600;
 
-    sf::RenderWindow mWindow;
-    //jedzonko
-    sf::RectangleShape food;
+    private:
 
-    //dodajemy Snake'a
-    Snake snake;
+        bool update();                                // aktualizuje gre
+        void render();                                                  //Tworzy obraz w oknie i wyswietla go
+        void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
+
+    private:
+
+        static const sf::Time TimePerFrame;
+
+        sf::Font font;
+
+        sf::RenderWindow mWindow;
+        //jedzonko
+        sf::RectangleShape food;
+
+        //dodajemy Snake'a
+        Snake snake;
+
+        int points = 0;//zlicza punkty
+        std::ostringstream pointsos;//strumieñ pomocny przy zamianie int na sting
+        std::string pointss;//string z iloœciami punktów wypisywany na ekran
+        sf::Text point;
 
 };
 

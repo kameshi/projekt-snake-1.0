@@ -1,3 +1,4 @@
+#include "Menu.hpp"
 #include "Snake.hpp"
 #include "Game.hpp"
 

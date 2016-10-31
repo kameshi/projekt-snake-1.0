@@ -53,6 +53,8 @@
 		</Linker>
 		<Unit filename="Game.hpp" />
 		<Unit filename="Game_methods.cpp" />
+		<Unit filename="Menu.hpp" />
+		<Unit filename="Menu_methods.cpp" />
 		<Unit filename="Snake.hpp" />
 		<Unit filename="Snake_methods.cpp" />
 		<Unit filename="functions.cpp" />
