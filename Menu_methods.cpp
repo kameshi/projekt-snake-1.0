@@ -17,6 +17,11 @@ Menu::Menu()
 
 void Menu::loadText()
 {
+    title.setFont(font);
+    title.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    title.setString("WONSZ");
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(widthButtonPosition, heightButtonPosition-83);
 
     button[0].setFont(font);
     button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
@@ -143,6 +148,7 @@ void Menu::render()
     {
         mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
 
+        mWindow.draw(title);
         mWindow.draw(button[0]);
         mWindow.draw(button[1]);
         mWindow.draw(button[2]);
