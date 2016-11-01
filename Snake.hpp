@@ -18,7 +18,7 @@ class Snake
         bool update();
         void handlePlayerInput();
         //metody dot. jedzenia
-        bool FoodColision(sf::RectangleShape food);
+        bool FoodColision(sf::Sprite food);
         bool isFoodOnBody(sf::FloatRect fR);
         //wielkosci jednego snake-node
         static const int Height = 20;

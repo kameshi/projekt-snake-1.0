@@ -8,7 +8,7 @@ Menu::Menu()
     mWindow.setFramerateLimit(60);
 
     heightButtonPosition = Game::height / 4;
-    widthButtonPosition = Game::width / 2 - 50;
+    widthButtonPosition = Game::width / 2 - 70;
 
     font.loadFromFile("./fonts/moj1.ttf");
     file.open("./file/punkty.txt",  std::ios::app | std::ios::out );
@@ -19,24 +19,28 @@ void Menu::loadText()
 {
 
     button[0].setFont(font);
+    button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[0].setString("PLAY");
     button[0].setPosition(widthButtonPosition,heightButtonPosition);
 
     heightButtonPosition += 83;
 
     button[1].setFont(font);
+    button[1].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[1].setString("SETTINGS");
     button[1].setPosition(widthButtonPosition,heightButtonPosition);
 
     heightButtonPosition += 83;
 
     button[2].setFont(font);
+    button[2].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[2].setString("SCORE");
     button[2].setPosition(widthButtonPosition,heightButtonPosition);
 
     heightButtonPosition += 83;
 
     button[3].setFont(font);
+    button[3].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[3].setString("CLOSE");
     button[3].setPosition(widthButtonPosition,heightButtonPosition);
 }
@@ -46,7 +50,7 @@ void Menu::settings()
     sf::Event event;
     while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
-        mWindow.clear(sf::Color(237,246,125));
+        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         mWindow.display();
     }
 }
@@ -62,7 +66,7 @@ void Menu::score()
     sf::Event event;
     while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
-        mWindow.clear(sf::Color(237,246,125));
+        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         //for(int j = 0; j < i; j++)
         //{
             textn.setFont(font);
@@ -137,7 +141,7 @@ void Menu::render()
     loadText();
     while(mWindow.isOpen())
     {
-        mWindow.clear(sf::Color(237,246,125));
+        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
 
         mWindow.draw(button[0]);
         mWindow.draw(button[1]);

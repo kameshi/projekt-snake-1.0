@@ -19,6 +19,10 @@ class Game
         static const int width = 800;
         static const int height = 600;
 
+        //kolory w grze
+        static const uint8_t backgroundColor[4];
+        static const uint8_t fontColor[4];
+
     private:
 
         bool update();                                // aktualizuje gre
@@ -33,7 +37,8 @@ class Game
 
         sf::RenderWindow * mWindow;
         //jedzonko
-        sf::RectangleShape food;
+        sf::Texture fd;
+        sf::Sprite food;
 
         //dodajemy Snake'a
         Snake snake;

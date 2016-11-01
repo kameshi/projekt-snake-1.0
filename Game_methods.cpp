@@ -4,18 +4,21 @@
 
 const float Game::playerSpeed = 1.f/10.f;
 const sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
+const uint8_t Game::backgroundColor[4] = {46, 214, 0, 255};
+const uint8_t Game::fontColor[4] = {51, 49, 56, 255};
 
 Game::Game(sf::RenderWindow *gWindow)
 {
     mWindow = gWindow;
     //ustawiamy parametry jedzonka
-    food.setSize(sf::Vector2f(20, 20));
+    fd.loadFromFile("./img/food01.png");
+    food.setTexture(fd);
     food.setPosition(400, 400);
-    food.setFillColor(sf::Color::Red);
 
     font.loadFromFile("./fonts/moj1.ttf");
 
-    point.setPosition(width-100,height-50);
+    point.setPosition(width-250,height-50);
+    point.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     point.setFont(font);
 
 }
@@ -57,7 +60,7 @@ bool Game::update() {
         pointss = "";
         pointss = pointsos.str();
         sf::Vector2f movement; //przmieszczenie
-        sf::RectangleShape tmp(sf::Vector2f(Snake::Width, Snake::Height));
+        sf::Sprite tmp;
         std::default_random_engine engine; //inicjowanie generatora liczb pseudolosowych
         engine.seed(time(NULL));
         do //losujemy nowe wspolrzedne dla jedzonka, dopoty dopoki przestana sie one pokrywac z pozycja wensza
@@ -75,8 +78,8 @@ bool Game::update() {
     return (snake.update()) ? true : false;
 }
 void Game::render() {
-    mWindow->clear(sf::Color(237,246,125));
-    point.setString(pointss);
+    mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+    point.setString("Score: " + pointss);
     mWindow->draw(food);
     mWindow->draw(point);
     snake.render(mWindow);

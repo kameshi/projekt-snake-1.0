@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1477906421 source:d:\code\projekt-snake-1.0\main.cpp
+1478003530 source:d:\code\projekt-snake-1.0\main.cpp
 	"Game.hpp"
 	"Snake.hpp"
 	"Menu.hpp"
@@ -823,24 +823,24 @@
 	<SFML/Graphics.hpp>
 	<vector>
 
-1477939791 source:d:\code\projekt-snake-1.0\game_methods.cpp
+1478007608 source:d:\code\projekt-snake-1.0\game_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1477939735 d:\code\projekt-snake-1.0\game.hpp
+1478006296 d:\code\projekt-snake-1.0\game.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<string>
 	<sstream>
 	"Snake.hpp"
 
-1477939833 d:\code\projekt-snake-1.0\snake.hpp
+1478006519 d:\code\projekt-snake-1.0\snake.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
 
-1477939857 source:d:\code\projekt-snake-1.0\snake_methods.cpp
+1478009234 source:d:\code\projekt-snake-1.0\snake_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
@@ -856,11 +856,13 @@
 	<fstream>
 	<string>
 
-1477906421 d:\code\projekt-snake-1.0\menu.hpp
+1478003530 d:\code\projekt-snake-1.0\menu.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
+	<fstream>
+	<string>
 
-1477939723 source:d:\code\projekt-snake-1.0\menu_methods.cpp
+1478007414 source:d:\code\projekt-snake-1.0\menu_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"

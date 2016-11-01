@@ -4,7 +4,7 @@
 
 Snake::Snake() : direction(Directions::DOWN)
 {
-    mTexture.loadFromFile("./img/snake.png");
+    mTexture.loadFromFile("./img/snakeSkin02.png");
     mPlayer.setTexture(mTexture);
     nodes.push_back(mPlayer);
     nodes[0].setPosition(100, 100);
@@ -67,7 +67,7 @@ void Snake::grow()
 {
     nodes.push_back(mPlayer);
 }
-bool Snake::FoodColision(sf::RectangleShape food)
+bool Snake::FoodColision(sf::Sprite food)
 {
     sf::Sprite head = nodes[0];
     sf::FloatRect headPosition = head.getGlobalBounds();
