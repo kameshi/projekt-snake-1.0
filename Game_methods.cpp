@@ -4,7 +4,7 @@
 
 const float Game::playerSpeed = 1.f/10.f;
 const sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
-const uint8_t Game::backgroundColor[4] = {46, 214, 0, 255};
+const uint8_t Game::backgroundColor[4] = {165, 204, 107, 255};
 const uint8_t Game::fontColor[4] = {51, 49, 56, 255};
 
 Game::Game(sf::RenderWindow *gWindow)
