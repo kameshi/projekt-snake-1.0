@@ -796,12 +796,12 @@
 	<string>
 	<vector>
 
-1477954024 source:c:\users\kameshi\desktop\projekt-snake-1.0\game_methods.cpp
+1478025232 source:c:\users\kameshi\desktop\projekt-snake-1.0\game_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1477944135 c:\users\kameshi\desktop\projekt-snake-1.0\game.hpp
+1478025232 c:\users\kameshi\desktop\projekt-snake-1.0\game.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<string>
@@ -813,12 +813,12 @@
 	"Snake.hpp"
 	"Menu.hpp"
 
-1477948235 source:c:\users\kameshi\desktop\projekt-snake-1.0\snake_methods.cpp
+1478033840 source:c:\users\kameshi\desktop\projekt-snake-1.0\snake_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1477947527 c:\users\kameshi\desktop\projekt-snake-1.0\snake.hpp
+1478025232 c:\users\kameshi\desktop\projekt-snake-1.0\snake.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -845,12 +845,12 @@
 	"Snake.hpp"
 	"Game.hpp"
 
-1477955624 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
+1478031855 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1477952904 c:\users\kameshi\desktop\projekt-snake-1.0\menu.hpp
+1478030796 c:\users\kameshi\desktop\projekt-snake-1.0\menu.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<fstream>

@@ -7,11 +7,8 @@ Menu::Menu()
 {
     mWindow.setFramerateLimit(60);
 
-    heightButtonPosition = Game::height / 4;
-    widthButtonPosition = Game::width / 2 - 70;
-
     font.loadFromFile("./fonts/moj1.ttf");
-    file.open("./file/punkty.txt",  std::ios::app | std::ios::out );
+    file.open("./file/punkty.txt", std::ios::out | std::ios::app | std::ios::in );
 
 }
 
@@ -21,28 +18,22 @@ void Menu::loadText()
     button[0].setFont(font);
     button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[0].setString("PLAY");
-    button[0].setPosition(widthButtonPosition,heightButtonPosition);
-
-    heightButtonPosition += 83;
+    button[0].setPosition(340,125);
 
     button[1].setFont(font);
     button[1].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[1].setString("SETTINGS");
-    button[1].setPosition(widthButtonPosition,heightButtonPosition);
-
-    heightButtonPosition += 83;
+    button[1].setPosition(290,225);
 
     button[2].setFont(font);
     button[2].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[2].setString("SCORE");
-    button[2].setPosition(widthButtonPosition,heightButtonPosition);
-
-    heightButtonPosition += 83;
+    button[2].setPosition(320,325);
 
     button[3].setFont(font);
     button[3].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[3].setString("CLOSE");
-    button[3].setPosition(widthButtonPosition,heightButtonPosition);
+    button[3].setPosition(322,425);
 }
 
 void Menu::settings()
@@ -70,20 +61,19 @@ void Menu::score()
         //for(int j = 0; j < i; j++)
         //{
             textn.setFont(font);
-            textn.setString(nick[0]);
+            textn.setString(nick[4]);
             textn.setPosition(xn,y);
-            mWindow.draw(textn);
-            /*
             os.str( "" );
             os << scorei[i];
             scores[i] = "";
             scores[i] = os.str();
             texts.setFont(font);
-            texts.setString(scores[0]);
+            texts.setString(scores[4]);
             texts.setPosition(xs,y);
+            mWindow.draw(textn);
             mWindow.draw(texts);
-            y += 20;
-        }*/
+            //y += 20;
+        //}
         mWindow.display();
     }
 }
@@ -91,34 +81,29 @@ void Menu::score()
 void Menu::detectPressButton()
 {
     sf::Event event;
-    heightButtonPosition = Game::height / 4;
     sf::Vector2i coordinates;
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         coordinates = sf::Mouse::getPosition( mWindow );
-        if(coordinates.x > widthButtonPosition && coordinates.x < widthButtonPosition + 100 && coordinates.y > heightButtonPosition && coordinates.y < heightButtonPosition + 50)
+        if(coordinates.x > 340 && coordinates.x < 470 && coordinates.y > 125 && coordinates.y < 160)
         {
             Game game(&mWindow);
             points = game.run();
-            file << scorei[0] << points << std::endl;
         }
-        heightButtonPosition += 83;
-        if(coordinates.x > widthButtonPosition && coordinates.x < widthButtonPosition + 100 && coordinates.y > heightButtonPosition && coordinates.y < heightButtonPosition + 50)
+        if(coordinates.x > 290 && coordinates.x < 510 && coordinates.y > 225 && coordinates.y < 260)
         {
             settings();
         }
-        heightButtonPosition += 83;
-        if(coordinates.x > widthButtonPosition && coordinates.x < widthButtonPosition + 100 && coordinates.y > heightButtonPosition && coordinates.y < heightButtonPosition + 50)
+        if(coordinates.x > 320 && coordinates.x < 483 && coordinates.y > 325 && coordinates.y < 360)
         {
             score();
         }
-        heightButtonPosition += 83;
-        if(coordinates.x > widthButtonPosition && coordinates.x < widthButtonPosition + 100 && coordinates.y > heightButtonPosition && coordinates.y < heightButtonPosition + 50)
+        if(coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460)
         {
             mWindow.close();
         }
         if(mWindow.pollEvent(event) && event.type == sf::Event::Closed)
         {
-
+            file << nick[2] << points << std::endl;
             file.close();
             mWindow.close();
         }
@@ -137,7 +122,7 @@ void Menu::readingFile(){
 
 void Menu::render()
 {
-    //readingFile();
+    readingFile();
     loadText();
     while(mWindow.isOpen())
     {

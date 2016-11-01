@@ -19,9 +19,6 @@ class Menu
 
     private:
 
-        int heightButtonPosition;
-        int widthButtonPosition;
-
         sf::RenderWindow mWindow;
         //sf::Sprite buttonsp[4]; //tablica przycisków
         //sf::Texture buttontx[4];
