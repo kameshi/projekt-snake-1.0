@@ -24,6 +24,7 @@ class Menu
         //sf::Texture buttontx[4];
         sf::Font font;
         sf::Text button[4];
+        sf::Text title;
 
         int points;
 
