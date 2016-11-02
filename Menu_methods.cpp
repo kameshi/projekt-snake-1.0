@@ -55,25 +55,38 @@ void Menu::score()
     int xn = 200;
     int xs = xn + 200;
     sf::Event event;
+    std::string srore;
+    i = 10;
     while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
         mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        //for(int j = 0; j < i; j++)
-        //{
+        y = 200;
+        for(int j = 0; j < i; j++)
+        {
             textn.setFont(font);
-            textn.setString(nick[4]);
+            textn.setString(nick[j]);
             textn.setPosition(xn,y);
+
             os.str( "" );
-            os << scorei[i];
-            scores[i] = "";
-            scores[i] = os.str();
+            os << scorei[j];
+            scores[j] = "";
+            srore = os.str();
             texts.setFont(font);
-            texts.setString(scores[4]);
+            texts.setString(srore);
             texts.setPosition(xs,y);
-            mWindow.draw(textn);
             mWindow.draw(texts);
-            //y += 20;
-        //}
+
+            mWindow.draw(textn);
+
+            y += 30;
+        }
+
+            //texts.setFont(font);
+            //texts.setString(nick[2]);
+            //texts.setPosition(xn,y+30);
+
+
+
         mWindow.display();
     }
 }
@@ -103,7 +116,7 @@ void Menu::detectPressButton()
         }
         if(mWindow.pollEvent(event) && event.type == sf::Event::Closed)
         {
-            file << nick[2] << points << std::endl;
+            file << nick[1] << points << std::endl;
             file.close();
             mWindow.close();
         }
@@ -112,10 +125,10 @@ void Menu::detectPressButton()
 
 void Menu::readingFile(){
     int i = 0;
-    while(i < 10)
+    while(file.good())
     {
-        file >> (nick[i]);
-        file >> (scorei[i]);
+        getline(file,nick[i]);
+        file >> nick[1] >> scorei[i];
         i++;
     }
 }

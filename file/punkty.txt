@@ -1,5 +1,4 @@
-nick  1
-cos  1
-cos  2
-cos  1
-jhgj 21
+nick	1
+cos	1
+cos	1
+jhgj	21

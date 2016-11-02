@@ -845,12 +845,12 @@
 	"Snake.hpp"
 	"Game.hpp"
 
-1478031855 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
+1478087444 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1478030796 c:\users\kameshi\desktop\projekt-snake-1.0\menu.hpp
+1478086411 c:\users\kameshi\desktop\projekt-snake-1.0\menu.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<fstream>
