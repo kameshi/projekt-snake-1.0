@@ -81,11 +81,13 @@ bool Snake::FoodColision(sf::Sprite food)
 }
 bool Snake::isFoodOnBody(sf::FloatRect fR)
 {
-    for(auto &node : nodes)
+    for(auto node : nodes)
     {
         sf::FloatRect tmp = node.getGlobalBounds();
         if(tmp == fR)
+        {
             return true;
+        }
     }
     return false;
 }
@@ -104,9 +106,10 @@ bool Snake::ownCollision() const
 }
 bool Snake::wallCollision()
 {
-    sf::Sprite head = nodes[0];
-    sf::Vector2f headPosition = head.getPosition();
-    if(headPosition.x == 0 || headPosition.x == Game::width || headPosition.y == 0 || headPosition.y == Game::height)
+    sf::FloatRect headPosition = nodes[0].getGlobalBounds();
+    float x = headPosition.left;
+    float y = headPosition.top;
+    if(x == -20 || x == Game::width || y == -20 || y == Game::height)
         return true;
     return false;
 }

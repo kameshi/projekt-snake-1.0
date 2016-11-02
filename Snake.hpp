@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 enum class Directions
 {

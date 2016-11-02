@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <sstream>
-
+#include <iostream>
 #include "Snake.hpp"
 
 class Game

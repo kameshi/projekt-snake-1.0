@@ -61,7 +61,8 @@ bool Game::update() {
         pointss = pointsos.str();
         sf::Vector2f movement; //przmieszczenie
         sf::Sprite tmp;
-        std::default_random_engine engine; //inicjowanie generatora liczb pseudolosowych
+        tmp.setTexture(fd);
+        std::default_random_engine engine;     // only used once to initialise (seed) engine
         engine.seed(time(NULL));
         do //losujemy nowe wspolrzedne dla jedzonka, dopoty dopoki przestana sie one pokrywac z pozycja wensza
         {
@@ -71,6 +72,7 @@ bool Game::update() {
             movement.y = y(engine) * 20;
 
             tmp.setPosition(movement);
+            std::cout << "TADA blahblah" << std::endl;
         }while(snake.isFoodOnBody(tmp.getGlobalBounds()));
         //przypisujemy jedzonku nowa, wylosowana pozycje
         food.setPosition(movement);
