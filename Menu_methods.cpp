@@ -2,10 +2,9 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
-Menu::Menu()
-: mWindow(sf::VideoMode(Game::width, Game::height), "Snake v.1.0")
+Menu::Menu(sf::RenderWindow * gWindow)
 {
-    mWindow.setFramerateLimit(60);
+    Menu::mWindow = gWindow;
 
     font.loadFromFile("./fonts/moj1.ttf");
 
@@ -43,10 +42,10 @@ void Menu::loadText()
 void Menu::settings()
 {
     sf::Event event;
-    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        mWindow.display();
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        mWindow->display();
     }
 }
 
@@ -60,12 +59,21 @@ void Menu::score()
     int xs = xn + 500;
     sf::Event event;
     std::string srore;
+<<<<<<< HEAD
     title.setString("WYNIKI");
     while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
         mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         y = 100;
         for(int j = 0; j <= i; j++)
+=======
+    i = 10;
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    {
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        y = 200;
+        for(int j = 0; j < i; j++)
+>>>>>>> origin/master
         {
             textn.setString(nick[j]);
             textn.setPosition(xn,y);
@@ -73,9 +81,19 @@ void Menu::score()
             os.str( "" );
             os << scorei[j];
             srore = os.str();
+<<<<<<< HEAD
             textn.setString(srore);
             textn.setPosition(xs,y);
             mWindow.draw(textn);
+=======
+            texts.setFont(font);
+            texts.setString(srore);
+            texts.setPosition(xs,y);
+            mWindow->draw(texts);
+
+            mWindow->draw(textn);
+
+>>>>>>> origin/master
             y += 30;
         }
         mWindow.draw(title);
@@ -83,6 +101,7 @@ void Menu::score()
     }
 }
 
+<<<<<<< HEAD
 void Menu::takeNick()
 {
     sf::Text textn;
@@ -110,6 +129,15 @@ void Menu::takeNick()
             textn.setPosition(200,200);
             mWindow.draw(textn);
         mWindow.display();
+=======
+            //texts.setFont(font);
+            //texts.setString(nick[2]);
+            //texts.setPosition(xn,y+30);
+
+
+
+        mWindow->display();
+>>>>>>> origin/master
     }
     nick[i] = nickn;
 }
@@ -135,10 +163,10 @@ void Menu::detectPressButton()
     sf::Event event;
     sf::Vector2i coordinates;
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        coordinates = sf::Mouse::getPosition( mWindow );
+        coordinates = sf::Mouse::getPosition( *mWindow );
         if(coordinates.x > 340 && coordinates.x < 470 && coordinates.y > 125 && coordinates.y < 160)
         {
-            Game game(&mWindow);
+            Game game(mWindow);
             points = game.run();
             checkScore();
         }
@@ -152,9 +180,9 @@ void Menu::detectPressButton()
         }
         if(coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460)
         {
-            mWindow.close();
+            mWindow->close();
         }
-        if(mWindow.pollEvent(event) && event.type == sf::Event::Closed)
+        if(mWindow->pollEvent(event) && event.type == sf::Event::Closed)
         {
             file.open("./file/punkty.txt", std::ios::out | std::ios::trunc );
             for(int j = 0; j <= i; j++)
@@ -162,8 +190,12 @@ void Menu::detectPressButton()
               // file << nick[j] << "  " << scorei[j] << std::endl;
             }
             file.close();
+<<<<<<< HEAD
 
             mWindow.close();
+=======
+            mWindow->close();
+>>>>>>> origin/master
         }
     }
 }
@@ -185,17 +217,17 @@ void Menu::render()
 {
     readingFile();
     loadText();
-    while(mWindow.isOpen())
+    while(mWindow->isOpen())
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
 
-        mWindow.draw(title);
-        mWindow.draw(button[0]);
-        mWindow.draw(button[1]);
-        mWindow.draw(button[2]);
-        mWindow.draw(button[3]);
+        mWindow->draw(title);
+        mWindow->draw(button[0]);
+        mWindow->draw(button[1]);
+        mWindow->draw(button[2]);
+        mWindow->draw(button[3]);
         detectPressButton();
 
-        mWindow.display();
+        mWindow->display();
     }
 }
