@@ -8,7 +8,6 @@ Menu::Menu()
     mWindow.setFramerateLimit(60);
 
     font.loadFromFile("./fonts/moj1.ttf");
-    file.open("./file/punkty.txt", std::ios::out | std::ios::app | std::ios::in );
 
 }
 
@@ -18,7 +17,7 @@ void Menu::loadText()
     title.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     title.setString("WONSZ");
     title.setStyle(sf::Text::Bold);
-    title.setPosition(310, 42);
+    title.setPosition(311, 42);
 
     button[0].setFont(font);
     button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
@@ -55,44 +54,79 @@ void Menu::score()
 {
     std::ostringstream os;
     sf::Text textn;
-    sf::Text texts;
-    int y = 200;
-    int xn = 200;
-    int xs = xn + 200;
+    textn.setFont(font);
+    int y = 100;
+    int xn = 100;
+    int xs = xn + 500;
     sf::Event event;
     std::string srore;
-    i = 10;
+    title.setString("WYNIKI");
     while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
         mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        y = 200;
-        for(int j = 0; j < i; j++)
+        y = 100;
+        for(int j = 0; j <= i; j++)
         {
-            textn.setFont(font);
             textn.setString(nick[j]);
             textn.setPosition(xn,y);
-
+            mWindow.draw(textn);
             os.str( "" );
             os << scorei[j];
-            scores[j] = "";
             srore = os.str();
-            texts.setFont(font);
-            texts.setString(srore);
-            texts.setPosition(xs,y);
-            mWindow.draw(texts);
-
+            textn.setString(srore);
+            textn.setPosition(xs,y);
             mWindow.draw(textn);
-
             y += 30;
         }
-
-            //texts.setFont(font);
-            //texts.setString(nick[2]);
-            //texts.setPosition(xn,y+30);
-
-
-
+        mWindow.draw(title);
         mWindow.display();
+    }
+}
+
+void Menu::takeNick()
+{
+    sf::Text textn;
+    textn.setFont(font);
+    sf::Event event;
+    std::string nickn;
+    sf::String nickS;
+    int z;
+    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return))
+    {
+        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+            if( event.type == sf::Event::TextEntered )
+            {
+                if( event.text.unicode < 128 && nickn.size() < 10)
+                {
+                    nickn += static_cast < char >( event.text.unicode );
+                    textn.setString(nickn);
+                }
+            }
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::BackSpace)
+            {
+                nickn.erase(nickn.size() - 1, 1);
+                textn.setString(nickn);
+            }
+            textn.setPosition(200,200);
+            mWindow.draw(textn);
+        mWindow.display();
+    }
+    nick[i] = nickn;
+}
+void Menu::checkScore(){
+    int help;
+    if(i < 10)
+    {
+        i++;
+        takeNick();
+        scorei[i]=points;
+
+    }
+    if(scorei[i] < points)
+    {
+        takeNick();
+        scorei[i] = points;
+       // while()
     }
 }
 
@@ -106,6 +140,7 @@ void Menu::detectPressButton()
         {
             Game game(&mWindow);
             points = game.run();
+            checkScore();
         }
         if(coordinates.x > 290 && coordinates.x < 510 && coordinates.y > 225 && coordinates.y < 260)
         {
@@ -121,21 +156,29 @@ void Menu::detectPressButton()
         }
         if(mWindow.pollEvent(event) && event.type == sf::Event::Closed)
         {
-            file << nick[1] << points << std::endl;
+            file.open("./file/punkty.txt", std::ios::out | std::ios::trunc );
+            for(int j = 0; j <= i; j++)
+            {
+              // file << nick[j] << "  " << scorei[j] << std::endl;
+            }
             file.close();
+
             mWindow.close();
         }
     }
 }
 
 void Menu::readingFile(){
-    int i = 0;
-    while(file.good())
+    i = 0;
+    file.open("./file/punkty.txt", std::ios::in );
+    while(file.good() && i < 11)
     {
-        getline(file,nick[i]);
-        file >> nick[1] >> scorei[i];
+        file >> nick[i] >> scorei[i];
         i++;
     }
+    i--;
+    file.close();
+    file.clear();
 }
 
 void Menu::render()
