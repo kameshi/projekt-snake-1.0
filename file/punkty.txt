@@ -2,6 +2,7 @@ nick  1
 cos  1
 cos  2
 cos  1
+<<<<<<< HEAD
 2
 5
 3
@@ -78,3 +79,6 @@ cos  1
 26865966
 26865963
 40
+=======
+jhgj 21
+>>>>>>> origin/master
