@@ -39,6 +39,7 @@ int Game::run() {
         }
         render();
     }
+    return 0;
 }
 
 void Game::handlePlayerInput()
@@ -72,7 +73,6 @@ bool Game::update() {
             movement.y = y(engine) * 20;
 
             tmp.setPosition(movement);
-            std::cout << "TADA blahblah" << std::endl;
         }while(snake.isFoodOnBody(tmp.getGlobalBounds()));
         //przypisujemy jedzonku nowa, wylosowana pozycje
         food.setPosition(movement);

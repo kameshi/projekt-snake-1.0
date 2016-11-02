@@ -19,7 +19,7 @@ class Menu
 
     private:
 
-        sf::RenderWindow mWindow;
+        sf::RenderWindow * mWindow;
         //sf::Sprite buttonsp[4]; //tablica przycisków
         //sf::Texture buttontx[4];
         sf::Font font;
@@ -37,7 +37,7 @@ class Menu
 
     public:
 
-        Menu();
+        Menu(sf::RenderWindow * gWindow);
         void render();
         void takeNick();
 

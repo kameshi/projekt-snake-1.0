@@ -2,10 +2,9 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
-Menu::Menu()
-: mWindow(sf::VideoMode(Game::width, Game::height), "Snake v.1.0")
+Menu::Menu(sf::RenderWindow * gWindow)
 {
-    mWindow.setFramerateLimit(60);
+    Menu::mWindow = gWindow;
 
     font.loadFromFile("./fonts/moj1.ttf");
     file.open("./file/punkty.txt", std::ios::out | std::ios::app | std::ios::in );
@@ -44,10 +43,10 @@ void Menu::loadText()
 void Menu::settings()
 {
     sf::Event event;
-    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        mWindow.display();
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        mWindow->display();
     }
 }
 
@@ -62,9 +61,9 @@ void Menu::score()
     sf::Event event;
     std::string srore;
     i = 10;
-    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         y = 200;
         for(int j = 0; j < i; j++)
         {
@@ -79,9 +78,9 @@ void Menu::score()
             texts.setFont(font);
             texts.setString(srore);
             texts.setPosition(xs,y);
-            mWindow.draw(texts);
+            mWindow->draw(texts);
 
-            mWindow.draw(textn);
+            mWindow->draw(textn);
 
             y += 30;
         }
@@ -92,7 +91,7 @@ void Menu::score()
 
 
 
-        mWindow.display();
+        mWindow->display();
     }
 }
 
@@ -101,10 +100,10 @@ void Menu::detectPressButton()
     sf::Event event;
     sf::Vector2i coordinates;
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        coordinates = sf::Mouse::getPosition( mWindow );
+        coordinates = sf::Mouse::getPosition( *mWindow );
         if(coordinates.x > 340 && coordinates.x < 470 && coordinates.y > 125 && coordinates.y < 160)
         {
-            Game game(&mWindow);
+            Game game(mWindow);
             points = game.run();
         }
         if(coordinates.x > 290 && coordinates.x < 510 && coordinates.y > 225 && coordinates.y < 260)
@@ -117,13 +116,13 @@ void Menu::detectPressButton()
         }
         if(coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460)
         {
-            mWindow.close();
+            mWindow->close();
         }
-        if(mWindow.pollEvent(event) && event.type == sf::Event::Closed)
+        if(mWindow->pollEvent(event) && event.type == sf::Event::Closed)
         {
             file << nick[1] << points << std::endl;
             file.close();
-            mWindow.close();
+            mWindow->close();
         }
     }
 }
@@ -142,17 +141,17 @@ void Menu::render()
 {
     readingFile();
     loadText();
-    while(mWindow.isOpen())
+    while(mWindow->isOpen())
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
 
-        mWindow.draw(title);
-        mWindow.draw(button[0]);
-        mWindow.draw(button[1]);
-        mWindow.draw(button[2]);
-        mWindow.draw(button[3]);
+        mWindow->draw(title);
+        mWindow->draw(button[0]);
+        mWindow->draw(button[1]);
+        mWindow->draw(button[2]);
+        mWindow->draw(button[3]);
         detectPressButton();
 
-        mWindow.display();
+        mWindow->display();
     }
 }

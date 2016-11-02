@@ -1,10 +1,12 @@
 #include "Game.hpp"
 #include "Snake.hpp"
 #include "Menu.hpp"
+#include "Welcomescreen.hpp"
 
 int main()
 {
-    Menu game;
+    Welcomescreen game;
     game.render();
+
     return 0;
 }
