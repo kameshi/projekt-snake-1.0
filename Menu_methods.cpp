@@ -59,49 +59,35 @@ void Menu::score()
     int xs = xn + 500;
     sf::Event event;
     std::string srore;
-<<<<<<< HEAD
+
     title.setString("WYNIKI");
-    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-    {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        y = 100;
-        for(int j = 0; j <= i; j++)
-=======
-    i = 10;
+
     while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
         mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        y = 200;
+        y = 100;
         for(int j = 0; j < i; j++)
->>>>>>> origin/master
         {
             textn.setString(nick[j]);
             textn.setPosition(xn,y);
-            mWindow.draw(textn);
+            mWindow->draw(textn);
             os.str( "" );
             os << scorei[j];
             srore = os.str();
-<<<<<<< HEAD
             textn.setString(srore);
             textn.setPosition(xs,y);
-            mWindow.draw(textn);
-=======
-            texts.setFont(font);
-            texts.setString(srore);
-            texts.setPosition(xs,y);
-            mWindow->draw(texts);
-
+            textn.setFont(font);
+            textn.setString(srore);
+            textn.setPosition(xs,y);
             mWindow->draw(textn);
 
->>>>>>> origin/master
             y += 30;
         }
-        mWindow.draw(title);
-        mWindow.display();
+        mWindow->draw(title);
+        mWindow->display();
     }
 }
 
-<<<<<<< HEAD
 void Menu::takeNick()
 {
     sf::Text textn;
@@ -110,34 +96,26 @@ void Menu::takeNick()
     std::string nickn;
     sf::String nickS;
     int z;
-    while(!(mWindow.pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return))
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return))
     {
-        mWindow.clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-            if( event.type == sf::Event::TextEntered )
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        if( event.type == sf::Event::TextEntered )
+        {
+            if( event.text.unicode < 128 && nickn.size() < 10)
             {
-                if( event.text.unicode < 128 && nickn.size() < 10)
-                {
-                    nickn += static_cast < char >( event.text.unicode );
-                    textn.setString(nickn);
-                }
-            }
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::BackSpace)
-            {
-                nickn.erase(nickn.size() - 1, 1);
+                nickn += static_cast < char >( event.text.unicode );
                 textn.setString(nickn);
             }
-            textn.setPosition(200,200);
-            mWindow.draw(textn);
-        mWindow.display();
-=======
-            //texts.setFont(font);
-            //texts.setString(nick[2]);
-            //texts.setPosition(xn,y+30);
-
-
-
+        }
+        if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::BackSpace)
+        {
+            nickn.erase(nickn.size() - 1, 1);
+            textn.setString(nickn);
+        }
+        textn.setPosition(200,200);
+        mWindow->draw(textn);
         mWindow->display();
->>>>>>> origin/master
+
     }
     nick[i] = nickn;
 }
@@ -145,10 +123,9 @@ void Menu::checkScore(){
     int help;
     if(i < 10)
     {
-        i++;
         takeNick();
         scorei[i]=points;
-
+        i++;
     }
     if(scorei[i] < points)
     {
@@ -178,24 +155,17 @@ void Menu::detectPressButton()
         {
             score();
         }
-        if(coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460)
-        {
-            mWindow->close();
-        }
-        if(mWindow->pollEvent(event) && event.type == sf::Event::Closed)
+        if((coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460) || (mWindow->pollEvent(event) && event.type == sf::Event::Closed))
         {
             file.open("./file/punkty.txt", std::ios::out | std::ios::trunc );
             for(int j = 0; j <= i; j++)
             {
-              // file << nick[j] << "  " << scorei[j] << std::endl;
+              file << nick[j] << "  " << scorei[j] << std::endl;
             }
+            file.clear();
+            file.flush();
             file.close();
-<<<<<<< HEAD
-
-            mWindow.close();
-=======
             mWindow->close();
->>>>>>> origin/master
         }
     }
 }
@@ -210,7 +180,7 @@ void Menu::readingFile(){
     }
     i--;
     file.close();
-    file.clear();
+
 }
 
 void Menu::render()

@@ -57,6 +57,8 @@
 		<Unit filename="Menu_methods.cpp" />
 		<Unit filename="Snake.hpp" />
 		<Unit filename="Snake_methods.cpp" />
+		<Unit filename="Welcomescreen.hpp" />
+		<Unit filename="Welcomescreen_methods.cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

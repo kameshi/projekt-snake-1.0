@@ -810,7 +810,7 @@
 	<iostream>
 	"Snake.hpp"
 
-1478126252 source:c:\users\kameshi\desktop\projekt-snake-1.0\main.cpp
+1478163273 source:c:\users\kameshi\desktop\projekt-snake-1.0\main.cpp
 	"Game.hpp"
 	"Snake.hpp"
 	"Menu.hpp"
@@ -851,7 +851,7 @@
 	"Snake.hpp"
 	"Game.hpp"
 
-1478126252 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
+1478163900 source:c:\users\kameshi\desktop\projekt-snake-1.0\menu_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
@@ -886,4 +886,10 @@
 1478126252 c:\users\kameshi\desktop\projekt-snake-1.0\welcomescreen.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
+
+1478126252 source:c:\users\kameshi\desktop\projekt-snake-1.0\welcomescreen_methods.cpp
+	"Menu.hpp"
+	"Snake.hpp"
+	"Game.hpp"
+	"Welcomescreen.hpp"
 
