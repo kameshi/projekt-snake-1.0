@@ -23,6 +23,7 @@ class Game
         static const uint8_t backgroundColor[4];
         static const uint8_t fontColor[4];
 
+
     private:
 
         bool update();                                // aktualizuje gre
@@ -30,22 +31,28 @@ class Game
         void handlePlayerInput();  //obsluguje dane wejsciowe od uzytkownika
 
     private:
-        static const float playerSpeed;
-        static const sf::Time TimePerFrame;
-
+        static sf::Time TimePerFrame;
+        static float playerSpeed;
         sf::Font font;
 
         sf::RenderWindow * mWindow;
         //jedzonko
         sf::Texture fd;
         sf::Sprite food;
+        sf::Texture fd02;
+        sf::Sprite food02;
+        sf::Texture fd03;
+        sf::Sprite food03;
+
+        sf::Sprite * Food;
+        int amountOfPoints;
 
         //dodajemy Snake'a
         Snake snake;
 
         int points = 0;//zlicza punkty
-        std::ostringstream pointsos;//strumieñ pomocny przy zamianie int na sting
-        std::string pointss;//string z iloœciami punktów wypisywany na ekran
+        std::ostringstream pointsos;//strumien pomocny przy zamianie int na sting
+        std::string pointss;//string z ilosciami punktow wypisywany na ekran
         sf::Text point;
 
 };
