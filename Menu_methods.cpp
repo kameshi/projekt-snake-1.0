@@ -61,7 +61,15 @@ void Menu::score()
     sf::Event event;
     std::string srore;
 
-    title.setString("WYNIKI");
+    sf::Text title2;
+
+    title2.setFont(font);
+    title2.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    title2.setString("WYNIKI");
+    title2.setScale(1.5, 1.5);
+    title2.setStyle(sf::Text::Bold);
+    title2.setPosition(290, 42);
+
 
     while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
@@ -82,19 +90,18 @@ void Menu::score()
             textn.setPosition(xs,y);
             mWindow->draw(textn);
 
-            y += 30;
+            y += 35;
         }
-        mWindow->draw(title);
+        mWindow->draw(title2);
         mWindow->display();
     }
 }
 
-void Menu::takeNick()
+void Menu::takeNick(std::string * nickn)
 {
     sf::Text textn;
     textn.setFont(font);
     sf::Event event;
-    std::string nickn;
     sf::String nickS;
     int z;
     while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return))
@@ -102,37 +109,68 @@ void Menu::takeNick()
         mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         if( event.type == sf::Event::TextEntered )
         {
-            if( event.text.unicode < 128 && nickn.size() < 10)
+            if( event.text.unicode < 128 && nickn->size() < 10)
             {
-                nickn += static_cast < char >( event.text.unicode );
-                textn.setString(nickn);
+                *nickn += static_cast < char >( event.text.unicode );
+                textn.setString(*nickn);
             }
         }
         if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::BackSpace)
         {
-            nickn.erase(nickn.size() - 1, 1);
-            textn.setString(nickn);
+            nickn->erase(nickn->size() - 1, 1);
+            textn.setString(*nickn);
         }
         textn.setPosition(200,200);
         mWindow->draw(textn);
         mWindow->display();
 
     }
-    nick[i] = nickn;
 }
 void Menu::checkScore(){
     int help;
-    if(i < 10)
+    std::string helpn;
+    int help2;
+    std::string helpn2;
+    int z = i-1;
+    std::string nickn;
+    if(scorei[z] < points)
     {
-        takeNick();
-        scorei[i]=points;
-        i++;
+        while(scorei[z] < points)
+        {
+            z--;
+        }
+        z++;
+        takeNick(&nickn);
+        help = scorei[z];
+        helpn = nick[z];
+        scorei[z] = points;
+        nick[z] = nickn;
+        for(int j = z+1; j <= i ; j++ )
+        {
+            help2 = scorei[j];
+            helpn2 = nick[j];
+            scorei[j] = help;
+            nick[j] = helpn;
+            help = help2;
+            helpn = helpn2;
+        }
+        if(i <= 9){
+            scorei[i] = help;
+            nick[i] = helpn;
+            if(i<9)
+            {
+                i++;
+            }
+        }
     }
-    if(scorei[i] < points)
-    {
-        takeNick();
+    else if(i <= 9){
+        takeNick(&nickn);
         scorei[i] = points;
-       // while()
+        nick[i] = nickn;
+        if(i<9)
+        {
+            i++;
+        }
     }
 }
 
@@ -159,7 +197,7 @@ void Menu::detectPressButton()
         if((coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 425 && coordinates.y < 460) || (mWindow->pollEvent(event) && event.type == sf::Event::Closed))
         {
             file.open("./file/punkty.txt", std::ios::out | std::ios::trunc );
-            for(int j = 0; j <= i; j++)
+            for(int j = 0; j < i; j++)
             {
               file << nick[j] << "  " << scorei[j] << std::endl;
             }
@@ -174,7 +212,7 @@ void Menu::detectPressButton()
 void Menu::readingFile(){
     i = 0;
     file.open("./file/punkty.txt", std::ios::in );
-    while(file.good() && i < 11)
+    while(file.good() && i < 10)
     {
         file >> nick[i] >> scorei[i];
         i++;

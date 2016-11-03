@@ -16,6 +16,7 @@ class Menu
         void detectPressButton();
         void checkScore();
         void readingFile();
+        void takeNick(std::string * nickn);
 
     private:
 
@@ -39,7 +40,6 @@ class Menu
 
         Menu(sf::RenderWindow * gWindow);
         void render();
-        void takeNick();
 
 };
 
