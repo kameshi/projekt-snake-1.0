@@ -15,20 +15,20 @@ void Welcomescreen::loadText()
 {
     text[0].setFont(font);
     text[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    text[0].setString("Marek Made³a & Damian £y¿wa");
+    text[0].setString("MAREK MADE£A & DAMIAN £YZWA");
     text[0].setScale(0.8, 0.8);
-    text[0].setPosition(90, 100);
+    text[0].setPosition(150, 100);
 
     text[1].setFont(font);
     text[1].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     text[1].setString("present");
     text[1].setScale(0.6, 0.6);
-    text[1].setPosition(330, 140);
+    text[1].setPosition(350, 140);
 
     text[2].setFont(font);
     text[2].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     text[2].setString("WONSZ");
-    text[2].setScale(1.2, 1.2);
+    text[2].setScale(1.6, 1.6);
     text[2].setStyle(sf::Text::Bold);
     text[2].setPosition(280, 200);
 
@@ -36,7 +36,7 @@ void Welcomescreen::loadText()
     text[3].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     text[3].setString("press [enter] to continue");
     text[3].setScale(0.6, 0.6);
-    text[3].setPosition(200, 360);
+    text[3].setPosition(260, 360);
 }
 void Welcomescreen::handleInputs()
 {
