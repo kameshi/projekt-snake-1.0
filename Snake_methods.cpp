@@ -66,8 +66,11 @@ void Snake::render(sf::RenderWindow *window)
 void Snake::grow(const int n)
 {
     if(n >= 0) {
-        for(int i = 0; i < n; ++i)
+        for(int i = 0; i < n; ++i) {
             nodes.push_back(mPlayer);
+            if(nodes.size() > 2)
+                nodes[nodes.size()-1].setPosition(nodes[nodes.size()-2].getPosition());
+        }
     }
     else {
         for(int i = n; i < 0; ++i)

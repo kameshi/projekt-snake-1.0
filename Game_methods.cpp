@@ -26,7 +26,7 @@ Game::Game(sf::RenderWindow *gWindow)
     //czcionka
     font.loadFromFile("./fonts/moj1.ttf");
 
-    point.setPosition(width-130,height-30);
+    point.setPosition(width-140,height-30);
     point.setScale(0.8, 0.8);
     point.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     point.setFont(font);
