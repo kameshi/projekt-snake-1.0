@@ -4,13 +4,14 @@
 
 sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
 float Game::playerSpeed = 1.f/10.f;
+int Game::pause = 0;
 const uint8_t Game::backgroundColor[4] = {165, 204, 107, 255};
 const uint8_t Game::fontColor[4] = {51, 49, 56, 255};
 
-Game::Game(sf::RenderWindow *gWindow)
+Game::Game(sf::RenderWindow *gWindow, sf::Font *font)
 {
     mWindow = gWindow;
-    //playerSpeed = 1.f/10.f;
+    Game::font = font;
     //ustawiamy parametry jedzonka
     fd.loadFromFile("./img/food01.png");
     food.setTexture(fd);
@@ -23,13 +24,16 @@ Game::Game(sf::RenderWindow *gWindow)
     Food->setPosition(400, 400);
     amountOfPoints = 1;
 
-    //czcionka
-    font.loadFromFile("./fonts/moj1.ttf");
 
     point.setPosition(width-140,height-30);
     point.setScale(0.8, 0.8);
     point.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    point.setFont(font);
+    point.setFont(*font);
+    pauseText.setPosition(5, 5);
+    pauseText.setScale(0.8, 0.8);
+    pauseText.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    pauseText.setFont(*font);
+    pauseText.setString("Press P to play.");
 
 }
 int Game::run() {
@@ -37,7 +41,10 @@ int Game::run() {
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mWindow->isOpen())
     {
-        timeSinceLastUpdate += clock.restart();
+        if(!pause)
+            timeSinceLastUpdate += clock.restart();
+        else
+            clock.restart();
         handlePlayerInput();
         while(timeSinceLastUpdate > Game::TimePerFrame)
         {
@@ -59,6 +66,16 @@ void Game::handlePlayerInput()
     {
         if(event.type == sf::Event::Closed)
             mWindow->close();
+        else if(event.type == sf::Event::KeyReleased) {
+            if(event.key.code == sf::Keyboard::P) {
+                if(!pause) {
+                    pause = 1;
+                }
+                else {
+                    pause = 0;
+                }
+            }
+        }
     }
     snake.handlePlayerInput();
 }
@@ -123,6 +140,8 @@ void Game::render() {
     point.setString("Score: " + pointss);
     mWindow->draw(*Food);
     mWindow->draw(point);
+    if(pause)
+        mWindow->draw(pauseText);
     snake.render(mWindow);
     mWindow->display();
 }

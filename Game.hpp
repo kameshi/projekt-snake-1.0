@@ -12,7 +12,7 @@ class Game
 {
     public:
 
-        Game(sf::RenderWindow *gWindow);
+        Game(sf::RenderWindow *gWindow, sf::Font *font);
         int run();
 
         //szerokosc i wysokosc okna
@@ -33,7 +33,9 @@ class Game
     private:
         static sf::Time TimePerFrame;
         static float playerSpeed;
-        sf::Font font;
+        static int pause;
+
+        sf::Font * font;
 
         sf::RenderWindow * mWindow;
         //jedzonko
@@ -54,6 +56,7 @@ class Game
         std::ostringstream pointsos;//strumien pomocny przy zamianie int na sting
         std::string pointss;//string z ilosciami punktow wypisywany na ekran
         sf::Text point;
+        sf::Text pauseText;
 
 };
 

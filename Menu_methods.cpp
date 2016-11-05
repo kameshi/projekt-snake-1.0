@@ -2,39 +2,38 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
-Menu::Menu(sf::RenderWindow * gWindow)
+Menu::Menu(sf::RenderWindow * gWindow, sf::Font *font)
 {
     Menu::mWindow = gWindow;
-
-    font.loadFromFile("./fonts/moj1.ttf");
+    Menu::font = font;
 
 }
 
 void Menu::loadText()
 {
-    title.setFont(font);
+    title.setFont(*font);
     title.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     title.setString("WONSZ");
     title.setScale(1.5, 1.5);
     title.setStyle(sf::Text::Bold);
     title.setPosition(290, 42);
 
-    button[0].setFont(font);
+    button[0].setFont(*font);
     button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[0].setString("PLAY");
     button[0].setPosition(340,125);
 
-    button[1].setFont(font);
+    button[1].setFont(*font);
     button[1].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[1].setString("SETTINGS");
     button[1].setPosition(300,225);
 
-    button[2].setFont(font);
+    button[2].setFont(*font);
     button[2].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[2].setString("SCORE");
     button[2].setPosition(330,325);
 
-    button[3].setFont(font);
+    button[3].setFont(*font);
     button[3].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[3].setString("CLOSE");
     button[3].setPosition(332,425);
@@ -54,7 +53,7 @@ void Menu::score()
 {
     std::ostringstream os;
     sf::Text textn;
-    textn.setFont(font);
+    textn.setFont(*font);
     int y = 100;
     int xn = 100;
     int xs = xn + 500;
@@ -77,7 +76,7 @@ void Menu::score()
             srore = os.str();
             textn.setString(srore);
             textn.setPosition(xs,y);
-            textn.setFont(font);
+            textn.setFont(*font);
             textn.setString(srore);
             textn.setPosition(xs,y);
             mWindow->draw(textn);
@@ -92,7 +91,7 @@ void Menu::score()
 void Menu::takeNick()
 {
     sf::Text textn;
-    textn.setFont(font);
+    textn.setFont(*font);
     sf::Event event;
     std::string nickn;
     sf::String nickS;
@@ -144,7 +143,7 @@ void Menu::detectPressButton()
         coordinates = sf::Mouse::getPosition( *mWindow );
         if(coordinates.x > 340 && coordinates.x < 470 && coordinates.y > 125 && coordinates.y < 160)
         {
-            Game game(mWindow);
+            Game game(mWindow, font);
             points = game.run();
             checkScore();
         }
