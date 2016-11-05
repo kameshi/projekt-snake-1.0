@@ -108,7 +108,11 @@ bool Game::update() {
         else if(perc > 85) {
             Food = &food02;
             for(int i = 0; i < 4; ++i)
-                amountOfPoints = n(engine);
+            {
+                while(points - amountOfPoints < 0){
+                    amountOfPoints = n(engine);
+                }
+            }
             playerSpeed = 1.f/10.f;
         }
         else {

@@ -10,12 +10,12 @@ class Menu
 {
     private:
 
-        void settings();
         void score();
         void loadText();
         void detectPressButton();
         void checkScore();
         void readingFile();
+        std::string takeNick();
 
     private:
 
@@ -23,7 +23,7 @@ class Menu
         //sf::Sprite buttonsp[4]; //tablica przycisków
         //sf::Texture buttontx[4];
         sf::Font * font;
-        sf::Text button[4];
+        sf::Text button[3];
         sf::Text title;
 
         int points;
@@ -31,15 +31,13 @@ class Menu
         std::fstream file;
 
         int i;
-        int scorei[11];
-        std::string nick[11];
-        std::string scores[11];
+        int scorei[10];
+        std::string nick[10];
 
     public:
 
         Menu(sf::RenderWindow * gWindow, sf::Font *font);
         void render();
-        void takeNick();
 
 };
 
