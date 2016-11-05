@@ -19,7 +19,7 @@ class Snake
         bool update();
         void handlePlayerInput();
         //metody dot. jedzenia
-        bool FoodColision(sf::Sprite food);
+        bool FoodColision(sf::Sprite * food, const int n);
         bool isFoodOnBody(sf::FloatRect fR);
         //wielkosci jednego snake-node
         static const int Height = 20;
@@ -35,7 +35,7 @@ class Snake
         Directions direction;
 
 
-        void grow(); //metoda umozliwiajaca wzrost weza
+        void grow(const int n); //metoda umozliwiajaca wzrost weza
         bool ownCollision() const; //czy wonsz zjada sam siebie
         bool wallCollision(); //czy uderzyl w sciane
 

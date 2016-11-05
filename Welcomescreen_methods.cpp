@@ -3,11 +3,13 @@
 #include "Game.hpp"
 #include "Welcomescreen.hpp"
 
+sf::Font Welcomescreen::font;
 
 Welcomescreen::Welcomescreen()
 : mWindow(sf::VideoMode(Game::width, Game::height), "Snake v.1.0")
 {
     mWindow.setFramerateLimit(60);
+    mWindow.setKeyRepeatEnabled(false);
 
     font.loadFromFile("./fonts/moj1.ttf");
 }
@@ -15,7 +17,7 @@ void Welcomescreen::loadText()
 {
     text[0].setFont(font);
     text[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    text[0].setString("MAREK MADE£A & DAMIAN £YZWA");
+    text[0].setString(std::wstring(L"MAREK MADE≈ÅA & DAMIAN ≈ÅY≈ªWA"));
     text[0].setScale(0.8, 0.8);
     text[0].setPosition(150, 100);
 
@@ -45,7 +47,7 @@ void Welcomescreen::handleInputs()
     {
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
         {
-            Menu menu(&mWindow);
+            Menu menu(&mWindow, &font);
             menu.render();
         }
         if(event.type == sf::Event::Closed)

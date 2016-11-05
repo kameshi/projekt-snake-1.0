@@ -63,18 +63,28 @@ void Snake::render(sf::RenderWindow *window)
         window->draw(node);
     }
 }
-void Snake::grow()
+void Snake::grow(const int n)
 {
-    nodes.push_back(mPlayer);
+    if(n >= 0) {
+        for(int i = 0; i < n; ++i) {
+            nodes.push_back(mPlayer);
+            if(nodes.size() > 2)
+                nodes[nodes.size()-1].setPosition(nodes[nodes.size()-2].getPosition());
+        }
+    }
+    else {
+        for(int i = n; i < 0; ++i)
+            nodes.pop_back();
+    }
 }
-bool Snake::FoodColision(sf::Sprite food)
+bool Snake::FoodColision(sf::Sprite * food, const int n)
 {
     sf::Sprite head = nodes[0];
     sf::FloatRect headPosition = head.getGlobalBounds();
-    sf::FloatRect foodPosition = food.getGlobalBounds();
+    sf::FloatRect foodPosition = food->getGlobalBounds();
     if(headPosition.intersects(foodPosition))
     {
-        grow();
+        grow(n);
         return true;
     }
     return false;

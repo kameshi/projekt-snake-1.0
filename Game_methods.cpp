@@ -2,25 +2,38 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
-const float Game::playerSpeed = 1.f/10.f;
-const sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
+sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
+float Game::playerSpeed = 1.f/10.f;
+int Game::pause = 0;
 const uint8_t Game::backgroundColor[4] = {165, 204, 107, 255};
 const uint8_t Game::fontColor[4] = {51, 49, 56, 255};
 
-Game::Game(sf::RenderWindow *gWindow)
+Game::Game(sf::RenderWindow *gWindow, sf::Font *font)
 {
     mWindow = gWindow;
+    Game::font = font;
     //ustawiamy parametry jedzonka
     fd.loadFromFile("./img/food01.png");
     food.setTexture(fd);
-    food.setPosition(400, 400);
+    fd02.loadFromFile("./img/food02.png");
+    food02.setTexture(fd02);
+    fd03.loadFromFile("./img/food03.png");
+    food03.setTexture(fd03);
+    //wskaznik na jedzonko
+    Food = &food;
+    Food->setPosition(400, 400);
+    amountOfPoints = 1;
 
-    font.loadFromFile("./fonts/moj1.ttf");
 
-    point.setPosition(width-130,height-30);
+    point.setPosition(width-140,height-30);
     point.setScale(0.8, 0.8);
     point.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    point.setFont(font);
+    point.setFont(*font);
+    pauseText.setPosition(5, 5);
+    pauseText.setScale(0.8, 0.8);
+    pauseText.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    pauseText.setFont(*font);
+    pauseText.setString("Press P to play.");
 
 }
 int Game::run() {
@@ -28,7 +41,10 @@ int Game::run() {
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mWindow->isOpen())
     {
-        timeSinceLastUpdate += clock.restart();
+        if(!pause)
+            timeSinceLastUpdate += clock.restart();
+        else
+            clock.restart();
         handlePlayerInput();
         while(timeSinceLastUpdate > Game::TimePerFrame)
         {
@@ -50,22 +66,61 @@ void Game::handlePlayerInput()
     {
         if(event.type == sf::Event::Closed)
             mWindow->close();
+        else if(event.type == sf::Event::KeyReleased) {
+            if(event.key.code == sf::Keyboard::P) {
+                if(!pause) {
+                    pause = 1;
+                }
+                else {
+                    pause = 0;
+                }
+            }
+        }
     }
     snake.handlePlayerInput();
 }
 bool Game::update() {
-    if(snake.FoodColision(food)) //jezeli wonsz zjadl jedzonko to if bedzie true
+    if(snake.FoodColision(Food, amountOfPoints)) //jezeli wonsz zjadl jedzonko to if bedzie true
     {
-        points++;
+        //
+        Game::TimePerFrame = sf::seconds(Game::playerSpeed);
+        //
+        points += amountOfPoints;
         pointsos.str( "" );
         pointsos << points;
         pointss = "";
         pointss = pointsos.str();
+        //
+        std::default_random_engine engine;     // only used once to initialise (seed) engine
+        engine.seed(time(NULL));
+        //
+        std::uniform_int_distribution<int> p(0, 100);
+        std::uniform_int_distribution<int> n(-2, 5);
+        int perc;
+        for(int i = 0; i < 4; ++i)
+            perc = p(engine);
+        //
+        if(perc < 70) {
+            Food = &food;
+            amountOfPoints = 1;
+            playerSpeed = 1.f/10.f;
+        }
+        else if(perc > 85) {
+            Food = &food02;
+            for(int i = 0; i < 4; ++i)
+                amountOfPoints = n(engine);
+            playerSpeed = 1.f/10.f;
+        }
+        else {
+            Food = &food03;
+            amountOfPoints = 2;
+            playerSpeed = 1.f/7.f;
+        }
+        //
         sf::Vector2f movement; //przmieszczenie
         sf::Sprite tmp;
         tmp.setTexture(fd);
-        std::default_random_engine engine;     // only used once to initialise (seed) engine
-        engine.seed(time(NULL));
+
         do //losujemy nowe wspolrzedne dla jedzonka, dopoty dopoki przestana sie one pokrywac z pozycja wensza
         {
             std::uniform_int_distribution<int> x(0, Game::width/Snake::Width-1);
@@ -76,15 +131,17 @@ bool Game::update() {
             tmp.setPosition(movement);
         }while(snake.isFoodOnBody(tmp.getGlobalBounds()));
         //przypisujemy jedzonku nowa, wylosowana pozycje
-        food.setPosition(movement);
+        Food->setPosition(movement);
     }
     return (snake.update()) ? true : false;
 }
 void Game::render() {
     mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
     point.setString("Score: " + pointss);
-    mWindow->draw(food);
+    mWindow->draw(*Food);
     mWindow->draw(point);
+    if(pause)
+        mWindow->draw(pauseText);
     snake.render(mWindow);
     mWindow->display();
 }

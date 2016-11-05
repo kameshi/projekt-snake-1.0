@@ -16,7 +16,7 @@ private:
 
 private:
     sf::Text text[4];
-    sf::Font font;
+    static sf::Font font;
     sf::RenderWindow mWindow;
 };
 
