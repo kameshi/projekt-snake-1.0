@@ -33,7 +33,7 @@ class Game
     private:
         static sf::Time TimePerFrame;
         static float playerSpeed;
-        static int pause;
+        static bool pause;
 
         sf::Font * font;
 

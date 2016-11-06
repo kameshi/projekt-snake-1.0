@@ -827,12 +827,12 @@
 	<vector>
 	<iostream>
 
-1478345726 source:d:\code\projekt-snake-1.0\game_methods.cpp
+1478437264 source:d:\code\projekt-snake-1.0\game_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
 
-1478345233 d:\code\projekt-snake-1.0\game.hpp
+1478437245 d:\code\projekt-snake-1.0\game.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<string>
@@ -840,13 +840,13 @@
 	<iostream>
 	"Snake.hpp"
 
-1478179050 d:\code\projekt-snake-1.0\snake.hpp
+1478437463 d:\code\projekt-snake-1.0\snake.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<vector>
 	<iostream>
 
-1478285885 source:d:\code\projekt-snake-1.0\snake_methods.cpp
+1478437673 source:d:\code\projekt-snake-1.0\snake_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"
@@ -862,13 +862,13 @@
 	<fstream>
 	<string>
 
-1478344941 d:\code\projekt-snake-1.0\menu.hpp
+1478437143 d:\code\projekt-snake-1.0\menu.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<fstream>
 	<string>
 
-1478345159 source:d:\code\projekt-snake-1.0\menu_methods.cpp
+1478437384 source:d:\code\projekt-snake-1.0\menu_methods.cpp
 	"Menu.hpp"
 	"Snake.hpp"
 	"Game.hpp"

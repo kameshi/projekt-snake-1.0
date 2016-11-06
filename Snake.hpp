@@ -28,7 +28,7 @@ class Snake
         void moves(); //metoda przemiszczajaca weza
 
     private:
-
+        static bool haveTurned;
         sf::Texture mTexture;
         sf::Sprite mPlayer;
         std::vector<sf::Sprite> nodes;

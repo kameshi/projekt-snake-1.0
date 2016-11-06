@@ -4,7 +4,7 @@
 
 sf::Time Game::TimePerFrame = sf::seconds(Game::playerSpeed);
 float Game::playerSpeed = 1.f/10.f;
-int Game::pause = 0;
+bool Game::pause = false;
 const uint8_t Game::backgroundColor[4] = {165, 204, 107, 255};
 const uint8_t Game::fontColor[4] = {51, 49, 56, 255};
 
@@ -109,9 +109,9 @@ bool Game::update() {
             Food = &food02;
             for(int i = 0; i < 4; ++i)
             {
-                while(points - amountOfPoints < 0){
+                do {
                     amountOfPoints = n(engine);
-                }
+                } while(points + amountOfPoints < 0);
             }
             playerSpeed = 1.f/10.f;
         }

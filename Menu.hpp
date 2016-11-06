@@ -20,8 +20,6 @@ class Menu
     private:
 
         sf::RenderWindow * mWindow;
-        //sf::Sprite buttonsp[4]; //tablica przycisków
-        //sf::Texture buttontx[4];
         sf::Font * font;
         sf::Text button[3];
         sf::Text title;

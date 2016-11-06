@@ -2,6 +2,8 @@
 #include "Snake.hpp"
 #include "Game.hpp"
 
+bool Snake::haveTurned = false;
+
 Snake::Snake() : direction(Directions::DOWN)
 {
     mTexture.loadFromFile("./img/snakeSkin02.png");
@@ -32,27 +34,34 @@ void Snake::moves()
 }
 void Snake::handlePlayerInput()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != Directions::DOWN)
-    {
-        direction = Directions::UP;
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != Directions::UP)
-    {
-        direction = Directions::DOWN;
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != Directions::LEFT)
-    {
-        direction = Directions::RIGHT;
-    }
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction != Directions::RIGHT)
-    {
-        direction = Directions::LEFT;
+    if(!haveTurned) {
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && direction != Directions::DOWN)
+        {
+            direction = Directions::UP;
+            haveTurned = true;
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && direction != Directions::UP)
+        {
+            direction = Directions::DOWN;
+            haveTurned = true;
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && direction != Directions::LEFT)
+        {
+            direction = Directions::RIGHT;
+            haveTurned = true;
+        }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && direction != Directions::RIGHT)
+        {
+            direction = Directions::LEFT;
+            haveTurned = true;
+        }
     }
 }
 bool Snake::update()
 {
     if(ownCollision() || wallCollision())
         return false;
+    haveTurned = false;
     moves();
     return true;
 }

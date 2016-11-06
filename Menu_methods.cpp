@@ -89,25 +89,26 @@ std::string Menu::takeNick()
     std::string nickn;
 
     sf::RectangleShape rectangle(sf::Vector2f(500, 40));
-    rectangle.setPosition(200, 200);
+    rectangle.setFillColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    rectangle.setPosition(180, 200);
 
     sf::Text textn;
     textn.setFont(*font);
-    textn.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    textn.setColor(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
 
     sf::Text text;
     text.setFont(*font);
     text.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    text.setString(std::wstring(L"Wprowadzony Nick ma maksymalną długość."));
+    text.setString(std::wstring(L"You reached max of name's length."));
     text.setScale(0.5, 0.5);
 
     sf::Text title2;
     title2.setFont(*font);
     title2.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    title2.setString("Podaj nick:");
-    title2.setScale(1.5, 1.5);
+    title2.setString("Type in your name:");
+    title2.setScale(1, 1);
     title2.setStyle(sf::Text::Bold);
-    title2.setPosition(290, 42);
+    title2.setPosition(260, 42);
 
     sf::Event event;
     text.setPosition(200,250);
