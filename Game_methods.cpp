@@ -142,8 +142,8 @@ bool Game::update() {
 void Game::render() {
     mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
     point.setString("Score: " + pointss);
-    mWindow->draw(*Food);
     mWindow->draw(point);
+    mWindow->draw(*Food);
     if(pause)
         mWindow->draw(pauseText);
     snake.render(mWindow);

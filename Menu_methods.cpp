@@ -9,6 +9,72 @@ Menu::Menu(sf::RenderWindow * gWindow, sf::Font *font)
 
 }
 
+void Menu::help()
+{
+    int i = 0;
+    int y = 100;
+
+    sf::Event event;
+
+    sf::Text title2;
+    title2.setFont(*font);
+    title2.setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    title2.setString("HELP");
+    title2.setScale(1.5, 1.5);
+    title2.setStyle(sf::Text::Bold);
+    title2.setPosition(320, 42);
+
+    sf::Texture animal_button_texture[9];
+    sf::Sprite animal_button_sprite[9];
+
+    animal_button_texture[0].loadFromFile("");
+    animal_button_texture[1].loadFromFile("");
+    animal_button_texture[2].loadFromFile("");
+    animal_button_texture[3].loadFromFile("");
+    animal_button_texture[4].loadFromFile("");
+    animal_button_texture[5].loadFromFile("");
+    animal_button_texture[6].loadFromFile("");
+    animal_button_texture[7].loadFromFile("");
+    animal_button_texture[8].loadFromFile("");
+    for(i=0; i<9; i++)
+    {
+        animal_button_sprite[i].setTexture(animal_button_texture[i]);
+        animal_button_sprite[i].setPosition(200,y);
+        y += 50;
+    }
+
+    y = 100;
+
+    sf::Text animal_button_text[9];
+    for(i=0; i<9; i++)
+    {
+        animal_button_text[i].setFont(*font);
+        animal_button_text[i].setPosition(200,y);
+        y += 50;
+    }
+    animal_button_text[0].setString("mysz");
+    animal_button_text[1].setString("wiewiorka");
+    animal_button_text[2].setString("zolw");
+    animal_button_text[3].setString("kot");
+    animal_button_text[4].setString("gora");
+    animal_button_text[5].setString("dol");
+    animal_button_text[6].setString("lewo");
+    animal_button_text[7].setString("prawo");
+    animal_button_text[8].setString("pauza");
+
+    while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+    {
+        mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
+        for(i=0; i<9; i++)
+        {
+            mWindow->draw(animal_button_text[i]);
+            mWindow->draw(animal_button_sprite[i]);
+        }
+        mWindow->draw(title2);
+        mWindow->display();
+    }
+}
+
 void Menu::loadText()
 {
     title.setFont(*font);
@@ -21,17 +87,22 @@ void Menu::loadText()
     button[0].setFont(*font);
     button[0].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[0].setString("PLAY");
-    button[0].setPosition(340,200);
+    button[0].setPosition(342,180);
 
     button[1].setFont(*font);
     button[1].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
     button[1].setString("SCORE");
-    button[1].setPosition(330,275);
+    button[1].setPosition(330,260);
 
     button[2].setFont(*font);
     button[2].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
-    button[2].setString("CLOSE");
-    button[2].setPosition(332,350);
+    button[2].setString("HELP");
+    button[2].setPosition(342,340);
+
+    button[3].setFont(*font);
+    button[3].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+    button[3].setString("CLOSE");
+    button[3].setPosition(333,420);
 }
 
 void Menu::score()
@@ -53,7 +124,7 @@ void Menu::score()
     title2.setString("WYNIKI");
     title2.setScale(1.5, 1.5);
     title2.setStyle(sf::Text::Bold);
-    title2.setPosition(290, 42);
+    title2.setPosition(295, 42);
 
     while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
@@ -115,6 +186,7 @@ std::string Menu::takeNick()
     textn.setPosition(200,200);
     while(true)
     {
+        mWindow->setFramerateLimit(20);
         mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
         if( event.type == sf::Event::TextEntered )
         {
@@ -196,17 +268,21 @@ void Menu::detectPressButton()
     sf::Vector2i coordinates;
     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         coordinates = sf::Mouse::getPosition( *mWindow );
-        if(coordinates.x > 340 && coordinates.x < 470 && coordinates.y > 200 && coordinates.y < 235)
+        if(coordinates.x > 342 && coordinates.x < 434 && coordinates.y > 180 && coordinates.y < 211)
         {
             Game game(mWindow, font);
             points = game.run();
             checkScore();
         }
-        if(coordinates.x > 320 && coordinates.x < 483 && coordinates.y > 275 && coordinates.y < 310)
+        else if(coordinates.x > 330 && coordinates.x < 449 && coordinates.y > 260 && coordinates.y < 291)
         {
             score();
         }
-        if((coordinates.x > 322 && coordinates.x < 480 && coordinates.y > 350 && coordinates.y < 385) || (mWindow->pollEvent(event) && event.type == sf::Event::Closed))
+        else if(coordinates.x > 342 && coordinates.x < 434 && coordinates.y > 340 && coordinates.y < 371)
+        {
+            help();
+        }
+        else if((coordinates.x > 333 && coordinates.x < 448 && coordinates.y > 420 && coordinates.y < 451) || (mWindow->pollEvent(event) && event.type == sf::Event::Closed))
         {
             file.open("./file/punkty.txt", std::ios::out | std::ios::trunc);
             do
@@ -254,6 +330,7 @@ void Menu::render()
         mWindow->draw(button[0]);
         mWindow->draw(button[1]);
         mWindow->draw(button[2]);
+        mWindow->draw(button[3]);
         detectPressButton();
 
         mWindow->display();

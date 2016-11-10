@@ -15,13 +15,14 @@ class Menu
         void detectPressButton();
         void checkScore();
         void readingFile();
+        void help();
         std::string takeNick();
 
     private:
 
         sf::RenderWindow * mWindow;
         sf::Font * font;
-        sf::Text button[3];
+        sf::Text button[4];
         sf::Text title;
 
         int points;
