@@ -24,48 +24,49 @@ void Menu::help()
     title2.setStyle(sf::Text::Bold);
     title2.setPosition(320, 42);
 
-    sf::Texture animal_button_texture[9];
-    sf::Sprite animal_button_sprite[9];
+    sf::Texture animal_button_texture[8];
+    sf::Sprite animal_button_sprite[8];
 
-    animal_button_texture[0].loadFromFile("");
-    animal_button_texture[1].loadFromFile("");
-    animal_button_texture[2].loadFromFile("");
-    animal_button_texture[3].loadFromFile("");
-    animal_button_texture[4].loadFromFile("");
-    animal_button_texture[5].loadFromFile("");
-    animal_button_texture[6].loadFromFile("");
-    animal_button_texture[7].loadFromFile("");
-    animal_button_texture[8].loadFromFile("");
-    for(i=0; i<9; i++)
+    animal_button_texture[0].loadFromFile("./img/help-img-mysz.png");
+    animal_button_texture[1].loadFromFile("./img/help-img-wiewior.png");
+    animal_button_texture[2].loadFromFile("./img/help-img-kot.png");
+    animal_button_texture[3].loadFromFile("./img/help-img-up.png");
+    animal_button_texture[4].loadFromFile("./img/help-img-down.png");
+    animal_button_texture[5].loadFromFile("./img/help-img-left.png");
+    animal_button_texture[6].loadFromFile("./img/help-img-right.png");
+    animal_button_texture[7].loadFromFile("./img/help-img-pause.png");
+    for(i=0; i<8; i++)
     {
         animal_button_sprite[i].setTexture(animal_button_texture[i]);
-        animal_button_sprite[i].setPosition(200,y);
-        y += 50;
+        animal_button_sprite[i].scale(0.5, 0.5);
+        animal_button_sprite[i].setPosition(150,y);
+        y += 60;
     }
 
-    y = 100;
+    y = 110;
 
     sf::Text animal_button_text[9];
-    for(i=0; i<9; i++)
+    for(i=0; i<8; i++)
     {
         animal_button_text[i].setFont(*font);
-        animal_button_text[i].setPosition(200,y);
-        y += 50;
+        animal_button_text[i].setColor(sf::Color(Game::fontColor[0],Game::fontColor[1],Game::fontColor[2], Game::fontColor[3]));
+        animal_button_text[i].scale(0.6, 0.6);
+        animal_button_text[i].setPosition(215,y);
+        y += 60;
     }
-    animal_button_text[0].setString("mysz");
-    animal_button_text[1].setString("wiewiorka");
-    animal_button_text[2].setString("zolw");
-    animal_button_text[3].setString("kot");
-    animal_button_text[4].setString("gora");
-    animal_button_text[5].setString("dol");
-    animal_button_text[6].setString("lewo");
-    animal_button_text[7].setString("prawo");
-    animal_button_text[8].setString("pauza");
+    animal_button_text[0].setString("Mouse - gives you 1 point");
+    animal_button_text[1].setString("Squirrel - gives you from -3 to 5 points randomly");
+    animal_button_text[2].setString("Cat - gives you 2 points and slows you\ndown untill you catch next animal");
+    animal_button_text[3].setString("Turn up");
+    animal_button_text[4].setString("Turn Down");
+    animal_button_text[5].setString("Turn left");
+    animal_button_text[6].setString("Turn right");
+    animal_button_text[7].setString("Pause");
 
     while(!(mWindow->pollEvent(event)&& event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
     {
         mWindow->clear(sf::Color(Game::backgroundColor[0],Game::backgroundColor[1],Game::backgroundColor[2], Game::backgroundColor[3]));
-        for(i=0; i<9; i++)
+        for(i=0; i<8; i++)
         {
             mWindow->draw(animal_button_text[i]);
             mWindow->draw(animal_button_sprite[i]);
